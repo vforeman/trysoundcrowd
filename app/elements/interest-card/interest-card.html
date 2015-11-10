@@ -9,16 +9,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
 
 <dom-module id="interest-card">
   <template>
     <style>
       :host {
         display: block;
+        font-family: 'aktivgrotesk';
+        width: 300px;
+        max-height: 444px;
       }
     </style>
-    <div>Hello from <span>{{elementName}}</span></div>
-  </template>
+    <paper-material class='layout vertical'>
+      <content class='self-center'></content>
+      <iron-image src='{{imgUrl}}' height='256' width='256' sizing='contain' class='self-center'></iron-image>
+
+    </paper-material>  </template>
   <script>
   (function() {
     'use strict';
@@ -33,6 +40,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       listeners:{
       },
       properties: {
+        imgUrl: {type: String, value: '../../images/placeholder.png', notify: true},
+        userType: {type: String, value: 'User Type', notify: true},
         elementName: {type: String, value: 'interest-card', notify: true}
       }
     });

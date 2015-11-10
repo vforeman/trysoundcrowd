@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../interest-card/interest-card.html">
 
 <dom-module id="splash-page">
   <template>
@@ -17,7 +18,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
-    <div>Hello from <span>{{elementName}}</span></div>
+    <interest-card user-type='Music Lover' img-url='../../images/listeners.png'>
+        <span>Are you a Music Lover?</span>
+    </interest-card>
+    <interest-card user-type='DJ' img-url='../../images/djs.png'>
+        <span>Are you a DJ?</span>
+    </interest-card>
+    <interest-card user-type='fitness' img-url='../../images/fitness.jpg'>
+        <span>Are you part of an Fitness Group?</span>
+    </interest-card>
   </template>
   <script>
   (function() {
