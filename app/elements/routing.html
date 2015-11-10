@@ -18,6 +18,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     page('/', function () {
       app.route = 'home';
     });
+    page('/interest/:archetype', function (data) {
+      app.route = 'interest';
+      app.params = data.params;
+    });
 
     page('/users', function () {
       app.route = 'users';

@@ -17,7 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
-    <div>Hello from <span>{{elementName}}</span></div>
+    <div>Hello from <span>{{archetype}}</span></div>
   </template>
   <script>
   (function() {
@@ -33,6 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       listeners:{
       },
       properties: {
+        archetype: {type: String, value: 'archetype', notify: true},
         elementName: {type: String, value: 'interest-page', notify: true}
       }
     });
