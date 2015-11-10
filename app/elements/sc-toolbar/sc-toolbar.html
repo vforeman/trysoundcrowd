@@ -16,8 +16,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
+      div.ui.button{
+        background: var(--accent-color);
+      }
+      button.ui.button{
+        background: transparent;
+        color: white;
+      }
     </style>
-    <div>Hello from <span>{{elementName}}</span></div>
+    <a href='/'>
+      <div class='ui button'>
+        <button class='ui button'>HOME</button>
+      </div>
+    </a>
   </template>
   <script>
   (function() {
