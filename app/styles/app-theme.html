@@ -20,10 +20,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    */
 
   /* Application theme */
+  /*AKTIV-GROTESK FONT*/
+  @font-face{
+      font-family: 'aktivgrotesk';
+      src: url('fonts/aktivgrotesk.ttf');
+    }
 
   :root {
-    --dark-primary-color: #303F9F;
-    --default-primary-color: #3F51B5;
+    --dark-primary-color: #531f6f;
+    --default-primary-color: #7734C0;
     --light-primary-color: #C5CAE9;
     --text-primary-color: #ffffff; /*text/icons*/
     --accent-color: #FF4081;
@@ -55,6 +60,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   paper-scroll-header-panel {
     height: 100%;
+    --paper-scroll-header-container:{
+      background : #ddd;
+    }
   }
 
   paper-material {
@@ -72,7 +80,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
 
   .paper-menu > .iron-selected {
-    color: var(--default-primary-color);
+    color: var(--dark-primary-color);
   }
 
   paper-menu a {
@@ -87,7 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
-    font-family: 'Roboto', 'Noto', sans-serif;
+    font-family: 'aktivgrotesk', 'Noto', sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     font-size: 14px;
@@ -122,9 +130,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     transform-origin: left center;
   }
 
+  iron-pages{
+    height:100%;
+    padding: 0px 0px;
+  }
+
   /* Height of the scroll area */
   .content {
-    height: 900px;
+    height: 1200px;
+    background: #ddd;
   }
 
   /* Breakpoints */

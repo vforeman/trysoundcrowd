@@ -1,0 +1,73 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+
+<dom-module id="interest-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+        font-family: 'aktivgrotesk';
+        width: 300px;
+        max-height: 444px;
+        margin: 24px 24px;
+      }
+      ::content #title{
+        font-size:1.5em;
+        text-align:center;
+      }
+      paper-material{
+        padding: 24px 24px;
+        background: white;
+      }
+      #button{
+        background: var(--default-primary-color);
+      }
+      button.ui.button{
+        padding: 0px 0px;
+        color:white;
+        background: transparent;
+      }
+    </style>
+    <paper-material class='layout vertical'>
+      <content select='#title' class='self-center'></content>
+      <iron-image src='{{imgUrl}}' height='256' width='256' sizing='contain' class='self-center'></iron-image>
+      <div id='button' class='ui button' on-click='_btnClick'>
+        <button class='ui button'><content select='#button' class='self-center'></content></button>
+      </div>
+
+    </paper-material>  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'interest-card',
+      created: function(){
+      },
+      ready: function(){
+      },
+      behaviors: [],
+      listeners:{
+      },
+      properties: {
+        imgUrl: {type: String, value: '../../images/placeholder.png', notify: true},
+        archetype: {type: String, value: 'archetype', notify: true},
+        elementName: {type: String, value: 'interest-card', notify: true}
+      },
+      _btnClick: function(e){
+        page('/interest/'+this.archetype);
+      }
+    });
+  })();
+  </script>
+</dom-module>
