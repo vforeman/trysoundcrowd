@@ -1,0 +1,117 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/firebase-element/firebase-document.html">
+
+<dom-module id="interest-page">
+  <template>
+    <style>
+      :host {
+        display: block;
+        @apply(--layout-vertical);
+        font-family: 'aktivgrotesk';
+      }
+      #submitBtn.ui.button.invalid{
+        background: var(--light-primary-color);
+        color: var(--disabled-text-color);
+      }
+      #submitBtn.ui.button.valid{
+        background: var(--accent-color);
+        color: white;
+      }
+      #header{
+        font-size: 2em;
+        margin:16px 16px;
+        color: var(--primary-text-color);
+      }
+      p{
+        text-align: center;
+      }
+      #tm{
+        color:var(--accent-color);
+        font-size:1.2em;
+      }
+    </style>
+    <firebase-document id='fb' location='https://trysoundcrowd.firebaseio.com/'
+      on-firebase-value='_storeSnapshot'></firebase-document>
+
+    <div id='header' class='self-center'>
+      <span>Hello <span>{{userType}}</span></span>
+    </div>
+    <p class='self-center'>
+      "Stay connected and help shape <span id='tm'>SoundCrowd</span> before it is even released"
+    </p>
+    <div id='input' class="ui action input">
+      <input is='iron-input' type="text" placeholder="iminterested@gmail.com" bind-value='{{email}}'>
+      <button id='submitBtn' class="ui button invalid" on-click='_onSubmit' disabled$='{{!isEmailValid}}'>You have my attention</button>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'interest-page',
+      created: function(){
+      },
+      ready: function(){
+      },
+      behaviors: [],
+      listeners:{
+      },
+      properties: {
+        uid: {type: String, notify: true},
+        isEmailValid: {type: Boolean, value: false, notify: true},
+        snapshot: {type: Object, notify: true},
+        email: {type: String, notify: true, observer: '_emailChanged'},
+        userType: {type: String, value: 'archetype', notify: true,computed: '_userType(archetype)'},
+        archetype: {type: String, value: 'archetype', notify: true},
+        elementName: {type: String, value: 'interest-page', notify: true}
+      },
+      _onSubmit: function(e){
+        if(this.isEmailValid){
+          console.log('submitting ', this.email);
+          var emailRef = this.snapshot.child('emails').child(this.archetype).ref().push(this.email);
+          this.uid = emailRef.key();
+          console.log(this.uid);
+        }
+      },
+      _storeSnapshot: function(e, snapshot){
+        this.snapshot = snapshot;
+      },
+      _emailChanged: function(email){
+        var re = /^\S+@\S+\.\S+$/;
+        this.isEmailValid = re.test(email);
+        console.log(this.isEmailValid);
+        if(this.isEmailValid){
+          this.toggleClass('valid', true, this.$.submitBtn);
+          this.toggleClass('invalid', false, this.$.submitBtn);
+        } else {
+          this.toggleClass('valid', false, this.$.submitBtn);
+          this.toggleClass('invalid', true, this.$.submitBtn);
+        }
+      },
+      _userType: function(archetype){
+        switch(archetype){
+          case 'musiclovers':
+            return 'Music Lovers';
+          case 'djs':
+            return 'DJs';
+          case 'activegroups':
+            return 'Movers & Shakers';
+
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

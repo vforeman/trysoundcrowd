@@ -19,12 +19,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-family: 'aktivgrotesk';
         width: 300px;
         max-height: 444px;
-        margin: 12px 12px;
+        margin: 24px 24px;
+      }
+      ::content #title{
+        font-size:1.5em;
+        text-align:center;
+      }
+      paper-material{
+        padding: 24px 24px;
       }
       #button{
         background: var(--accent-color);
       }
       button.ui.button{
+        padding: 0px 0px;
         color:white;
         background: transparent;
       }
@@ -32,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <paper-material class='layout vertical'>
       <content select='#title' class='self-center'></content>
       <iron-image src='{{imgUrl}}' height='256' width='256' sizing='contain' class='self-center'></iron-image>
-      <div id='button' class='ui button'>
+      <div id='button' class='ui button' on-click='_btnClick'>
         <button class='ui button'><content select='#button' class='self-center'></content></button>
       </div>
 
@@ -52,8 +60,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       properties: {
         imgUrl: {type: String, value: '../../images/placeholder.png', notify: true},
-        userType: {type: String, value: 'User Type', notify: true},
+        archetype: {type: String, value: 'archetype', notify: true},
         elementName: {type: String, value: 'interest-card', notify: true}
+      },
+      _btnClick: function(e){
+        page('/interest/'+this.archetype);
       }
     });
   })();
