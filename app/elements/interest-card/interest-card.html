@@ -1,0 +1,61 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+
+<dom-module id="interest-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+        font-family: 'aktivgrotesk';
+        width: 300px;
+        max-height: 444px;
+        margin: 12px 12px;
+      }
+      #button{
+        background: var(--accent-color);
+      }
+      button.ui.button{
+        color:white;
+        background: transparent;
+      }
+    </style>
+    <paper-material class='layout vertical'>
+      <content select='#title' class='self-center'></content>
+      <iron-image src='{{imgUrl}}' height='256' width='256' sizing='contain' class='self-center'></iron-image>
+      <div id='button' class='ui button'>
+        <button class='ui button'><content select='#button' class='self-center'></content></button>
+      </div>
+
+    </paper-material>  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'interest-card',
+      created: function(){
+      },
+      ready: function(){
+      },
+      behaviors: [],
+      listeners:{
+      },
+      properties: {
+        imgUrl: {type: String, value: '../../images/placeholder.png', notify: true},
+        userType: {type: String, value: 'User Type', notify: true},
+        elementName: {type: String, value: 'interest-card', notify: true}
+      }
+    });
+  })();
+  </script>
+</dom-module>
