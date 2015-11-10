@@ -15,9 +15,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
+        @apply(--layout-vertical)
       }
     </style>
-    <div>Hello from <span>{{archetype}}</span></div>
+    <div id='header'>
+      <span>Hello <span>{{userType}}</span></span>
+    </div>
+    <p class='self-center'>
+      "Stay connected and help shape <span>SoundCrowd</span> before it is released"
+    </p>
   </template>
   <script>
   (function() {
@@ -33,8 +39,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       listeners:{
       },
       properties: {
+        userType: {type: String, value: 'archetype', notify: true,computed: '_userType(archetype)'},
         archetype: {type: String, value: 'archetype', notify: true},
         elementName: {type: String, value: 'interest-page', notify: true}
+      },
+      _userType: function(archetype){
+        switch(archetype){
+          case 'musiclovers':
+            return 'Music Lovers';
+          case 'djs':
+            return 'DJs';
+          case 'activegroups':
+            return 'Movers & Shakers';
+
+        }
       }
     });
   })();
