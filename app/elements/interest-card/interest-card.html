@@ -19,11 +19,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-family: 'aktivgrotesk';
         width: 300px;
         max-height: 444px;
+        margin: 12px 12px;
+      }
+      #button{
+        background: var(--accent-color);
+      }
+      button.ui.button{
+        color:white;
+        background: transparent;
       }
     </style>
     <paper-material class='layout vertical'>
-      <content class='self-center'></content>
+      <content select='#title' class='self-center'></content>
       <iron-image src='{{imgUrl}}' height='256' width='256' sizing='contain' class='self-center'></iron-image>
+      <div id='button' class='ui button'>
+        <button class='ui button'><content select='#button' class='self-center'></content></button>
+      </div>
 
     </paper-material>  </template>
   <script>
