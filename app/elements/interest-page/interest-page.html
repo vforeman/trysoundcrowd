@@ -31,14 +31,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #header{
         font-size: 2em;
         margin:16px 16px;
-        color: var(--primary-text-color);
+        color: var(--default-primary-color);
       }
       p{
         text-align: center;
+        font-size: 1.4em;
       }
       #tm{
         color:var(--accent-color);
-        font-size:1.2em;
+        font-size:1.6em;
+      }
+      input{
+        font-size: 1.4em;
       }
     </style>
     <firebase-document id='fb' location='https://trysoundcrowd.firebaseio.com/'
@@ -50,10 +54,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <p class='self-center'>
       "Stay connected and help shape <span id='tm'>SoundCrowd</span> before it is even released"
     </p>
-    <div id='input' class="ui action input">
-      <input is='iron-input' type="text" placeholder="iminterested@gmail.com" bind-value='{{email}}'>
-      <button id='submitBtn' class="ui button invalid" on-click='_onSubmit' disabled$='{{!isEmailValid}}'>You have my attention</button>
-    </div>
+    <paper-material class='layout horizontal'>
+      <div id='input' class="ui action input flex">
+        <input is='iron-input' type="text" placeholder="iminterested@gmail.com" bind-value='{{email}}'>
+        <button id='submitBtn' class="ui button invalid" on-click='_onSubmit' disabled$='{{!isEmailValid}}'>You have my attention</button>
+      </div>
+    </paper-material>
   </template>
   <script>
   (function() {
