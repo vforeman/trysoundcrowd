@@ -15,10 +15,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+      }
+      i{
+        color:#336699;
+      }
+      span{
+        font-size: 1.2em;
+        color: #336699;
+      }
+      a{
+        margin: 16px 16px;
       }
     </style>
-    <div>Hello from <span>{{foo}}</span></div>
+  </a>
+  <a href='https://twitter.com/soundcrowdhu/'>
+    <i class='blue inverted large circular twitter icon'></i><span>@soundcrowdhu</span>
+  </a>
+    <a href='https://instagram.com/soundcrowd/'>
+      <i class='blue inverted large circular instagram icon'></i><span>@soundcrowd</span>
+  </a>
+    <a href='https://www.facebook.com/SoundCrowd-837891689643066/'>
+      <i class='blue inverted large circular facebook icon'></i><span>facebook page</span>
+    </a>
+
   </template>
+
+
   <script>
   (function() {
     'use strict';
