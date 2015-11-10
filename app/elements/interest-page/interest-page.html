@@ -9,21 +9,47 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
 
 <dom-module id="interest-page">
   <template>
     <style>
       :host {
         display: block;
-        @apply(--layout-vertical)
+        @apply(--layout-vertical);
+        font-family: 'aktivgrotesk';
+      }
+      #submitBtn.ui.button.invalid{
+        background: var(--light-primary-color);
+        color: var(--disabled-text-color);
+      }
+      #submitBtn.ui.button.valid{
+        background: var(--accent-color);
+        color: white;
+      }
+      #header{
+        font-size: 2em;
+        margin:16px 16px;
+        color: var(--primary-text-color);
+      }
+      p{
+        text-align: center;
+      }
+      #tm{
+        color:var(--accent-color);
+        font-size:1.2em;
       }
     </style>
-    <div id='header'>
+    <div id='header' class='self-center'>
       <span>Hello <span>{{userType}}</span></span>
     </div>
     <p class='self-center'>
-      "Stay connected and help shape <span>SoundCrowd</span> before it is released"
+      "Stay connected and help shape <span id='tm'>SoundCrowd</span> before it is even released"
     </p>
+    <div id='input' class="ui action input">
+      <input is='iron-input' type="text" placeholder="iminterested@gmail.com" bind-value='{{email}}'>
+      <button id='submitBtn' class="ui button invalid">You have my attention</button>
+    </div>
   </template>
   <script>
   (function() {
@@ -39,9 +65,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       listeners:{
       },
       properties: {
+        email: {type: String, notify: true, observer: '_emailChanged'},
         userType: {type: String, value: 'archetype', notify: true,computed: '_userType(archetype)'},
         archetype: {type: String, value: 'archetype', notify: true},
         elementName: {type: String, value: 'interest-page', notify: true}
+      },
+      _emailChanged: function(email){
+        var re = /^\S+@\S+\.\S+$/;
+        var valid = re.test(email);
+        console.log(valid);
+        if(valid){
+          this.toggleClass('valid', true, this.$.submitBtn);
+          this.toggleClass('invalid', false, this.$.submitBtn);
+        } else {
+          this.toggleClass('valid', false, this.$.submitBtn);
+          this.toggleClass('invalid', true, this.$.submitBtn);
+        }
       },
       _userType: function(archetype){
         switch(archetype){
